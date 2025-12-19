@@ -8,10 +8,9 @@ def get_snowpark_session() -> Session:
     connection_parameters = {
         "ACCOUNT": "QNNERMQ-RZ07987",
         "USER": "snowpark_user",
-        "PASSWORD": "Test@12$4",
+        "PASSWORD": os.getenv("SNOWFLAKE_PASSWORD", "YOUR_PASSWORD_HERE"),
         "ROLE": "SYSADMIN",
         "DATABASE": "sales_dwh",
-        "SCHEMA": "source",
         "WAREHOUSE": "SNOWPARK_ETL_WH"
     }
     return Session.builder.configs(connection_parameters).create()
